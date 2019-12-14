@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'todo-list';
+  todoList = [
+    {
+      id: 0,
+      title: 'Angular basic'
+    },
+    {
+      id: 1,
+      title: 'Building blocks',
+    },
+    {
+      id: 2,
+      title: 'Components communication'
+    },
+    {
+      id: 3,
+      title: 'Performance and best practices'
+    }
+  ];
 }
