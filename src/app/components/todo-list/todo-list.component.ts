@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {TodoItem} from '../../entities/todo-item';
 
 @Component({
   selector: 'app-todo-list',
@@ -7,7 +8,7 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
 
-  @Input() list: {id: number, title: string}[];
+  @Input() list: TodoItem[];
 
   private counter = 0;
 

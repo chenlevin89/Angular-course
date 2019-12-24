@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {TodoItem} from './entities/todo-item';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,8 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  todoList = [
+
+  todoList: TodoItem[] = [
     {
       id: 0,
       title: 'Angular basic'
@@ -24,4 +26,5 @@ export class AppComponent {
       title: 'Performance and best practices'
     }
   ];
+
 }

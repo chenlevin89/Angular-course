@@ -1,6 +1,7 @@
 <div class="todo-container">
   <h1>TODO LIST</h1>
   <div class="todo-list-container">
+
     <div class="todo-list">
       <div class="todo-item"
            *ngFor="let item of list">
@@ -9,6 +10,9 @@
         <label [attr.for]="item.id">{{item.title}}</label>
       </div>
     </div>
+
     <button (click)="add()">Add</button>
+
   </div>
+
 </div>
