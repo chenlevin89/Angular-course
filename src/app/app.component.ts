@@ -1,30 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TodoItem} from './entities/todo-item';
+import {TodoListService} from './services/todo-list.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  todoList: TodoItem[] = [
-    {
-      id: 0,
-      title: 'Angular basic'
-    },
-    {
-      id: 1,
-      title: 'Building blocks',
-    },
-    {
-      id: 2,
-      title: 'Components communication'
-    },
-    {
-      id: 3,
-      title: 'Performance and best practices'
-    }
-  ];
+  todoList: TodoItem[];
+
+  constructor(private todoListService: TodoListService) {}
+
+  ngOnInit() {
+    this.todoList = this.todoListService.getTodoListData();
+  }
 
 }
