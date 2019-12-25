@@ -17,4 +17,8 @@ export class AppComponent implements OnInit {
     this.todoList = this.todoListService.getTodoListData();
   }
 
+  addItem(item: TodoItem): void {
+    this.todoList = [...this.todoList, item]; // Immutable
+  }
+
 }

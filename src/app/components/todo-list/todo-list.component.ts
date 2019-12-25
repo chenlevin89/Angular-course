@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnDestroy, AfterViewInit, OnChanges, Output, EventEmitter} from '@angular/core';
 import {TodoItem} from '../../entities/todo-item';
 
 @Component({
@@ -6,20 +6,34 @@ import {TodoItem} from '../../entities/todo-item';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
 
   @Input() list: TodoItem[];
+  @Output() addItem  = new EventEmitter<TodoItem>();
 
   todoActionName = '';
 
   constructor() {}
 
+  ngOnChanges() {
+    console.log('a');
+  }
+
   ngOnInit() {
   }
 
-  add() {
+  ngAfterViewInit() {
+
+  }
+
+  ngOnDestroy() {
+
+  }
+
+  add(): void {
     if (this.todoActionName) {
-      this.list.push({id: this.list.length, title: this.todoActionName});
+      const addedItem: TodoItem = {id: this.list.length, title: this.todoActionName};
+      this.addItem.emit(addedItem);
       this.todoActionName = '';
     }
   }
