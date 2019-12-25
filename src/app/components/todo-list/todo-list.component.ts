@@ -10,7 +10,7 @@ export class TodoListComponent implements OnInit {
 
   @Input() list: TodoItem[];
 
-  private counter = 0;
+  todoActionName = '';
 
   constructor() {}
 
@@ -18,8 +18,10 @@ export class TodoListComponent implements OnInit {
   }
 
   add() {
-    this.counter ++;
-    this.list.push({id: this.list.length, title: `New action ${this.counter}`});
+    if (this.todoActionName) {
+      this.list.push({id: this.list.length, title: this.todoActionName});
+      this.todoActionName = '';
+    }
   }
 
 }
