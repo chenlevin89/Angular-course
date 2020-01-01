@@ -4,10 +4,12 @@
 
     <div class="todo-list">
       <div class="todo-item"
-           *ngFor="let item of list" appTooltip>
+           *ngFor="let item of list"
+           appTooltip>
         <input type="checkbox"
                [attr.id]="item.id" />
-        <label [attr.for]="item.id">{{item.title | uppercase}}</label>
+        <label [attr.for]="item.id">{{item.title}}</label>
+        <!-- <label [attr.for]="item.id">{{item.title | uppercase}}</label> -->
       </div>
     </div>
 
