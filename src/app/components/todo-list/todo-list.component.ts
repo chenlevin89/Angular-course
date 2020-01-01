@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, OnDestroy, AfterViewInit, OnChanges, Output, EventEmitter, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {TodoItem} from '../../entities/todo-item';
 
 @Component({
@@ -6,7 +6,7 @@ import {TodoItem} from '../../entities/todo-item';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
+export class TodoListComponent implements OnInit {
 
   @Input() list: TodoItem[];
   @Output() addItem = new EventEmitter<TodoItem>();
@@ -23,20 +23,8 @@ export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
     }
   }
 
-  ngOnChanges(changes:SimpleChanges): void {
-   console.log(changes);
-  }
-
   ngOnInit() {
-    console.log('Component Initialize');
-  }
 
-  ngAfterViewInit() {
-    console.log('Component view have been rendered');
-  }
-
-  ngOnDestroy() {
-    console.log('Component destroy');
   }
 
 }
