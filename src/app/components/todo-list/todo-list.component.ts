@@ -1,27 +1,48 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnDestroy, AfterViewInit, OnChanges, Output, EventEmitter, SimpleChanges} from '@angular/core';
 import {TodoItem} from '../../entities/todo-item';
+import {TodoListService} from '../../services/todo-list.service';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
 
   @Input() list: TodoItem[];
+  @Output() addItem = new EventEmitter<TodoItem>();
 
   todoActionName = '';
 
-  constructor() {}
+  constructor(private todoListService: TodoListService) {}
 
-  ngOnInit() {
-  }
-
-  add() {
+  add(): void {
     if (this.todoActionName) {
-      this.list.push({id: this.list.length, title: this.todoActionName});
+      const addedItem: TodoItem = {id: this.list.length, title: this.todoActionName};
+      this.addItem.emit(addedItem);
       this.todoActionName = '';
     }
   }
+
+  ngOnChanges(changes:SimpleChanges): void {
+   console.log(changes);
+  }
+
+  ngOnInit() {
+    console.log('Component Initialize');
+    // this.todoListService.registerFunc({key: 'printCallback', func: this.callBackFunction.bind(this)});
+  }
+
+  ngAfterViewInit() {
+    console.log('Component view have been rendered');
+  }
+
+  ngOnDestroy() {
+    console.log('Component destroy');
+  }
+
+  // private callBackFunction(): void{
+  //   console.log(this.todoActionName);
+  // }
 
 }

@@ -6,6 +6,8 @@ import {TodoItem} from '../entities/todo-item';
 })
 export class TodoListService {
 
+  observers = {};
+
   constructor() {}
 
   getTodoListData(): TodoItem[] {
@@ -27,5 +29,15 @@ export class TodoListService {
         title: 'Performance and best practices'
       }
     ];
+  }
+
+  registerFunc({key, func}: {key: string, func: Function}): void {
+    this.observers[key] = func;
+  }
+
+  invokeCallbacks(key: string): void {
+    if(typeof this.observers[key] === 'function'){
+      this.observers[key]();
+    }
   }
 }
