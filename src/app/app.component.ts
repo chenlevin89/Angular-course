@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TodoItem} from './entities/todo-item';
 import {TodoListService} from './services/todo-list.service';
-import {TodoListComponent} from './components/todo-list/todo-list.component';
+import {NavigationItem} from './components/navigation/navigation-item';
 
 @Component({
   selector: 'app-root',
@@ -10,25 +10,18 @@ import {TodoListComponent} from './components/todo-list/todo-list.component';
 })
 export class AppComponent implements OnInit {
 
-  // @ViewChild('todoListComponent', {static: false}) todoListComponent: TodoListComponent;
-
-  todoList: TodoItem[];
-
-  constructor(private todoListService: TodoListService) {}
+  navigationItems: NavigationItem[] = [
+    {
+      name: 'Home',
+      path: '/home'
+    },
+    {
+      name: 'Actions',
+      path: '/actions'
+    }
+  ];
 
   ngOnInit() {
-    this.todoList = this.todoListService.getTodoListData();
+
   }
-
-  addItem(item: TodoItem): void {
-    this.todoList = [...this.todoList, item]; // Immutable
-  }
-
-  // printValue(){
-  //   console.log(this.todoListComponent.todoActionName);
-  // }
-
-  // printValueThrowService(){
-  //   this.todoListService.invokeCallbacks('printCallback');
-  // }
 }
