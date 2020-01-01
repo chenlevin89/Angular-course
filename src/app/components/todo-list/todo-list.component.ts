@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TodoItem} from '../../entities/todo-item';
 
 @Component({
@@ -8,7 +8,24 @@ import {TodoItem} from '../../entities/todo-item';
 })
 export class TodoListComponent implements OnInit {
 
-  @Input() list: TodoItem[];
+  list: TodoItem[] = [
+    {
+      id: 0,
+      title: 'Angular basic'
+    },
+    {
+      id: 1,
+      title: 'Building blocks',
+    },
+    {
+      id: 2,
+      title: 'Components communication'
+    },
+    {
+      id: 3,
+      title: 'Performance and best practices'
+    }
+  ];
 
   private counter = 0;
 
