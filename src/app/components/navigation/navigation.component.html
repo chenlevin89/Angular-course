@@ -1,0 +1,5 @@
+<div class="navigation-bar">
+  <span *ngFor="let item of navigationItems">
+    <a [routerLink]="item.path"  routerLinkActive="active">{{item.name}}</a>
+  </span>
+</div>

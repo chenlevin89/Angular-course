@@ -1,6 +1,5 @@
 import {Component, OnInit, Input, OnDestroy, AfterViewInit, OnChanges, Output, EventEmitter, SimpleChanges} from '@angular/core';
 import {TodoItem} from '../../entities/todo-item';
-import {TodoListService} from '../../services/todo-list.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,7 +13,7 @@ export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
 
   todoActionName = '';
 
-  constructor(private todoListService: TodoListService) {}
+  constructor() {}
 
   add(): void {
     if (this.todoActionName) {
@@ -30,7 +29,6 @@ export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
 
   ngOnInit() {
     console.log('Component Initialize');
-    // this.todoListService.registerFunc({key: 'printCallback', func: this.callBackFunction.bind(this)});
   }
 
   ngAfterViewInit() {
@@ -40,9 +38,5 @@ export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
   ngOnDestroy() {
     console.log('Component destroy');
   }
-
-  // private callBackFunction(): void{
-  //   console.log(this.todoActionName);
-  // }
 
 }

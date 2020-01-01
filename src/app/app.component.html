@@ -1,3 +1,7 @@
-<app-todo-list [list]="todoList" (addItem)="addItem($event)" #todoListComponent></app-todo-list>
-<!-- <button (click)="printValue()">View Child</button> -->
-<!-- <button (click)="printValueThrowService()">Service</button> -->
+<div class="navigation-container">
+  <app-navigation [navigationItems]="navigationItems"></app-navigation>
+</div>
+
+<div class="router-container">
+  <router-outlet></router-outlet>
+</div>
