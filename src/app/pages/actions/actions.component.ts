@@ -17,7 +17,6 @@ export class ActionsComponent implements OnInit {
 
   ngOnInit() {
     this.todoList = this.todoListService.getTodoListData();
-    // this.userName = this.route.snapshot.data.resolver.name;
   }
 
   addItem(item: TodoItem): void {
