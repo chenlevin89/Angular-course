@@ -1,5 +1,6 @@
-import {Component, OnInit, Input, OnDestroy, AfterViewInit, OnChanges, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, OnDestroy, AfterViewInit, OnChanges, Output, EventEmitter, SimpleChanges} from '@angular/core';
 import {TodoItem} from '../../entities/todo-item';
+import {TodoListService} from '../../services/todo-list.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,26 +10,11 @@ import {TodoItem} from '../../entities/todo-item';
 export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
 
   @Input() list: TodoItem[];
-  @Output() addItem  = new EventEmitter<TodoItem>();
+  @Output() addItem = new EventEmitter<TodoItem>();
 
   todoActionName = '';
 
-  constructor() {}
-
-  ngOnChanges() {
-    console.log('a');
-  }
-
-  ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-
-  }
-
-  ngOnDestroy() {
-
-  }
+  constructor(private todoListService: TodoListService) {}
 
   add(): void {
     if (this.todoActionName) {
@@ -37,5 +23,26 @@ export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
       this.todoActionName = '';
     }
   }
+
+  ngOnChanges(changes:SimpleChanges): void {
+   console.log(changes);
+  }
+
+  ngOnInit() {
+    console.log('Component Initialize');
+    // this.todoListService.registerFunc({key: 'printCallback', func: this.callBackFunction.bind(this)});
+  }
+
+  ngAfterViewInit() {
+    console.log('Component view have been rendered');
+  }
+
+  ngOnDestroy() {
+    console.log('Component destroy');
+  }
+
+  // private callBackFunction(): void{
+  //   console.log(this.todoActionName);
+  // }
 
 }
