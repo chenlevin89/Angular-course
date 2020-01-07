@@ -1,1 +1,6 @@
-<app-todo-list [list]="todoList" (addItem)="addItem($event)" #todoListComponent></app-todo-list>
+<!-- <p *ngIf="selectedActions.invalid">
+  You must complete at least one action
+</p>
+<app-todo-list [list]="todoList" (addItem)="addItem($event)" [formControl]="selectedActions"></app-todo-list> -->
+
+<app-todo-list [list]="todoList" (addItem)="addItem($event)"></app-todo-list>

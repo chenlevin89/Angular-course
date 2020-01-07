@@ -4,10 +4,15 @@
 
     <div class="todo-list">
       <div class="todo-item"
-           *ngFor="let item of list" appTooltip>
+           *ngFor="let item of list"
+           appTooltip>
         <input type="checkbox"
                [attr.id]="item.id" />
-        <label [attr.for]="item.id">{{item.title | uppercase}}</label>
+        <!-- <input type="checkbox"
+               [attr.id]="item.id"
+               (change)="onChecked($event, item.id)"
+               [checked]="selection.value[item.id]" /> -->
+        <label [attr.for]="item.id">{{item.title}}</label>
       </div>
     </div>
 
@@ -16,4 +21,7 @@
   </div>
 </div>
 
-<input class="new-todo" type="text" placeholder="Enter new action..." [(ngModel)]="todoActionName" />
+<input class="new-todo"
+       type="text"
+       placeholder="Enter new action..."
+       [(ngModel)]="todoActionName" />
