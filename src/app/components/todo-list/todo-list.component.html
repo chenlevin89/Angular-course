@@ -7,11 +7,9 @@
            *ngFor="let item of list"
            appTooltip>
         <input type="checkbox"
-               [attr.id]="item.id" />
-        <!-- <input type="checkbox"
                [attr.id]="item.id"
                (change)="onChecked($event, item.id)"
-               [checked]="selection.value[item.id]" /> -->
+               [checked]="selection.value[item.id]" />
         <label [attr.for]="item.id">{{item.title}}</label>
       </div>
     </div>
