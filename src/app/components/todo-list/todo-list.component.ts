@@ -10,7 +10,7 @@ import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/for
   //   {provide: NG_VALUE_ACCESSOR, multi: true, useExisting: forwardRef(() => TodoListComponent)}
   // ]
 })
-// export class TodoListComponent implements ControlValueAccessor
+// export class TodoListComponent implements ControlValueAccessor {
 export class TodoListComponent {
 
   @Input() list: TodoItem[];
