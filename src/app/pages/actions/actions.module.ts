@@ -3,17 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ActionsComponent } from './actions.component';
 import {Routes, RouterModule} from '@angular/router';
 import {TodoListModule} from '../../components/todo-list/todo-list.module';
-import {ActionsResolverService} from './actions-resolver.service';
-import {ActionsGuard} from './actions.guard';
+import {ReactiveFormsModule} from '@angular/forms';
 
 export const routes: Routes = [
   {
     path: '',
     component: ActionsComponent,
-    // resolve: {
-    //   resolver: ActionsResolverService
-    // },
-    // canActivate: [ActionsGuard]
   }
 ]
 
@@ -22,7 +17,8 @@ export const routes: Routes = [
   imports: [
     CommonModule,
     TodoListModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ]
 })
 export class ActionsModule { }

@@ -6,8 +6,6 @@ import {TodoItem} from '../entities/todo-item';
 })
 export class TodoListService {
 
-  observers = {};
-
   constructor() {}
 
   getTodoListData(): TodoItem[] {
@@ -31,13 +29,12 @@ export class TodoListService {
     ];
   }
 
-  registerFunc({key, func}: {key: string, func: Function}): void {
-    this.observers[key] = func;
+  getSelectedActions(){
+    const selected = localStorage.getItem('selectedActions');
+    return selected ? JSON.parse(selected) : null;
   }
 
-  invokeCallbacks(key: string): void {
-    if(typeof this.observers[key] === 'function'){
-      this.observers[key]();
-    }
+  updateSelectedActions(selection: number[]): void {
+    localStorage.setItem('selectedActions', JSON.stringify(selection));
   }
 }
