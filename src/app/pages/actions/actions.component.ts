@@ -14,35 +14,28 @@ import {Subject, Observable, merge} from 'rxjs';
 })
 export class ActionsComponent implements OnInit, OnDestroy {
 
-  todoList: TodoItem[];
-  // todoList$: Observable<TodoItem[]>;
+  todoList$: Observable<TodoItem[]>;
   userName: string;
   selectedActions = new FormControl(null, Validators.required);
 
   private onDestroy$ = new Subject();
-  // private todoListSubject$ = new Subject<TodoItem>();
+  private todoListSubject$ = new Subject<TodoItem>();
 
   constructor(private todoListService: TodoListService, private route: ActivatedRoute) {}
 
   ngOnInit() {
 
-    this.todoList = this.todoListService.getTodoListData();
-
-    // this.todoList$ = merge(this.todoListService.getTodoListData(), this.todoListSubject$.asObservable())
-    //   .pipe(
-    //     scan((acc, value) => {
-    //       if (Array.isArray(value)) {
-    //         return [...acc, ...value];
-    //       }
-    //       return [...acc, value];
-    //     }, [])
-    //   );
+    this.todoList$ = merge(this.todoListService.getTodoListData(), this.todoListSubject$.asObservable())
+      .pipe(
+        scan((acc, value) => {
+          if (Array.isArray(value)) {
+            return [...acc, ...value];
+          }
+          return [...acc, value];
+        }, [])
+      );
 
     this.selectedActions.setValue(this.todoListService.getSelectedActions());
-
-    // this.selectedActions.valueChanges.subscribe(value => {
-    //   this.todoListService.updateSelectedActions(value);
-    // });
 
     this.selectedActions.valueChanges
       .pipe(
@@ -58,11 +51,8 @@ export class ActionsComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  // addItem(item: TodoItem): void {
-  //   this.todoListSubject$.next(item);
-  // }
-
   addItem(item: TodoItem): void {
-    this.todoList = [...this.todoList, item]; // Immutable
+    this.todoListSubject$.next(item);
   }
+
 }
