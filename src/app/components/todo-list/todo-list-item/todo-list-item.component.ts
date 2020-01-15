@@ -23,9 +23,4 @@ export class TodoListItemComponent implements OnInit {
     this.checked.emit({event, id: this.item.id});
   }
 
-  getTitle(){
-    console.log(this.item);
-    return this.item.title;
-  }
-
 }

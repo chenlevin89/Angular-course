@@ -40,11 +40,6 @@ import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/for
     this.selection.setValue(currentSelection);
   }
 
-  getTitle(item: TodoItem){
-    console.log(item);
-    return item.title;
-  }
-
   writeValue(obj: any): void {
     const selection = obj && Array.isArray(obj) ?
       obj.reduce((acc, curr) => {
