@@ -1,0 +1,5 @@
+<input type="checkbox"
+       [attr.id]="item.id"
+       (change)="onChecked($event)"
+       [checked]="isChecked" />
+<label [attr.for]="item.id">{{getTitle()}}</label>

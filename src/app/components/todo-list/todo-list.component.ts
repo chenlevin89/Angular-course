@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter, forwardRef} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, forwardRef, ChangeDetectionStrategy} from '@angular/core';
 import {TodoItem} from '../../entities/todo-item';
 import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
@@ -8,7 +8,8 @@ import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/for
   styleUrls: ['./todo-list.component.scss'],
   providers: [
     {provide: NG_VALUE_ACCESSOR, multi: true, useExisting: forwardRef(() => TodoListComponent)}
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
  export class TodoListComponent implements ControlValueAccessor {
 
@@ -37,6 +38,11 @@ import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/for
       delete currentSelection[id];
     }
     this.selection.setValue(currentSelection);
+  }
+
+  getTitle(item: TodoItem){
+    console.log(item);
+    return item.title;
   }
 
   writeValue(obj: any): void {
