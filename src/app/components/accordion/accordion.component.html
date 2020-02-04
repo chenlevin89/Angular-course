@@ -1,0 +1,9 @@
+<div class="accordion">
+  <div class="header" (click)="toggle = !toggle">
+    <p>{{header}}</p>
+  </div>
+
+  <div class="body" *ngIf="toggle">
+    <ng-content></ng-content>
+  </div>
+</div>

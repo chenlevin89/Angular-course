@@ -17,7 +17,7 @@ export class ActionsResolverService implements Resolve<any> {
     return new Promise( (resolve, reject) => {
       setTimeout(() => {
         resolve(DATA);
-      }, 500)
+      }, 1000)
     });
   }
 }

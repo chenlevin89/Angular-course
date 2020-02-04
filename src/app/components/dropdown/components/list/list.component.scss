@@ -1,0 +1,15 @@
+:host{
+  div{
+    p{
+      cursor: pointer;
+      padding: 5px;
+      margin: 0;
+      &.selected{
+        border-left: 2px solid blue;
+      }
+      &:hover{
+        background-color: lightgray;
+      }
+    }
+  }
+}

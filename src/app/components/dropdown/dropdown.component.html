@@ -1,0 +1,10 @@
+<div class="dropdown-container">
+  <div class="selection" (click)="toggle = !toggle">
+    <span>{{selected.value?.text || 'Select Option' }}</span>
+    <span class="icon" [class.open]="toggle"><img src="../../../assets/images/arrow-down.svg" /></span>
+  </div>
+  <div class="options" [class.open]="toggle">
+      <app-search (searchChanged)="searchChanged($event)"></app-search>
+      <app-list [list]="displayedOptions$ | async" (selectOption)="selectOption($event)" [selected]="selected.value"></app-list>
+  </div>
+</div>

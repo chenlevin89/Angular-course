@@ -1,0 +1,3 @@
+<div>
+    <p *ngFor="let item of list" (click)="select(item)" [class.selected]="item === selected">{{item.text}}</p>
+</div>
