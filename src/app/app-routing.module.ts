@@ -15,6 +15,10 @@ export const routes: Routes = [
   {
     path: 'actions',
     loadChildren: () => import('./pages/actions/actions.module').then(m => m.ActionsModule)
+  },
+  {
+    path: 'practical-examples',
+    loadChildren: () => import('./pages/practical-examples/practical-examples.module').then(m => m.PracticalExamplesModule)
   }
 ]
 

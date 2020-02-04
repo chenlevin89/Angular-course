@@ -1,0 +1,30 @@
+:host{
+  height: 100%;
+  width: 100%;
+  padding: 25px;
+  .container{
+    padding: 25px;
+    background-color: #f0eeee;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    margin: 25px 0px;
+    h2{
+      color: #4c3666;
+    }
+  }
+  .loader{
+    button{
+      outline: none;
+      padding: 5px;
+      border-radius: 4px;
+      width: 50px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  }
+  .tooltip{
+    p{
+      width: 250px;
+    }
+  }
+}

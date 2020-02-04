@@ -1,0 +1,42 @@
+:host{
+  .dropdown-container{
+    position: relative;
+    background-color: white;
+    .selection{
+      border: 1px solid rgba(0,0,0,0.3);
+      padding: 5px;
+      border-radius: 4px;
+      min-width: 200px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-self: center;
+      .icon{
+        height: 15px;
+        width: 11px;
+        &.open{
+          transform: rotate(180deg);
+        }
+        img{
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+    .options{
+      display: none;
+      width: 100%;
+      height: 200px;
+      overflow-y: auto;
+      border: 1px solid rgba(0,0,0,0.3);
+      border-radius: 4px;
+      position: absolute;
+      width: 100%;
+      background-color: white;
+      z-index: 2;
+      &.open{
+        display: block;
+      }
+    }
+  }
+}

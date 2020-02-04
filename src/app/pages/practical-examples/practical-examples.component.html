@@ -1,0 +1,22 @@
+<div class="dropdown container">
+  <h2>Dropdown</h2>
+  <app-dropdown [options]="dropdownOptions" [formControl]="dropdown"></app-dropdown>
+</div>
+
+<div class="accordion container">
+    <h2>Accordion</h2>
+    <app-accordion header="Accordion">
+      <p>My dynamic content</p>
+    </app-accordion>
+</div>
+
+<div class="loader container">
+    <h2>Loader</h2>
+    <button (click)="toggleLoader(true)">Start</button>
+    <button (click)="toggleLoader(false)">Stop</button>
+</div>
+
+<div class="tooltip container">
+    <h2>Tooltip</h2>
+    <p appTooltip>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</p>
+</div>
