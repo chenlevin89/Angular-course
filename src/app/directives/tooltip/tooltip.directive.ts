@@ -7,6 +7,7 @@ export class TooltipDirective implements AfterViewInit {
 
   constructor(private elementRef: ElementRef) {}
 
+  // Todo
   ngAfterViewInit() {
     console.log(`Element has rendered to DOM => ${this.elementRef.nativeElement.innerText}`);
     // if (this.elementRef.nativeElement.scrollWidth > this.elementRef.nativeElement.clientWidth) {
