@@ -4,14 +4,14 @@ import {TodoListComponent} from './todo-list.component';
 import {TooltipModule} from '../../directives/tooltip/tooltip.module';
 import {FormsModule} from '@angular/forms';
 
-
+// TODO
 @NgModule({
   declarations: [TodoListComponent],
   exports: [TodoListComponent],
   imports: [
     CommonModule,
     TooltipModule,
-    FormsModule
+    // FormsModule
   ]
 })
 export class TodoListModule { }
