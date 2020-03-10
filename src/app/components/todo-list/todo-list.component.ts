@@ -11,7 +11,7 @@ export class TodoListComponent implements OnInit {
 
   list: TodoItem[];
 
-  // todoActionName = '';
+  todoActionName = '';
 
   constructor(private todoListService: TodoListService) {}
 
@@ -19,6 +19,7 @@ export class TodoListComponent implements OnInit {
     this.list = this.todoListService.getTodoListData();
   }
 
+  // Todo
   add() {
     // if (this.todoActionName) {
     //   this.list.push({id: this.list.length, title: this.todoActionName});
