@@ -4,7 +4,7 @@ import {TodoListComponent} from './todo-list.component';
 import {TooltipModule} from '../../directives/tooltip/tooltip.module';
 import {FormsModule} from '@angular/forms';
 
-// TODO
+// Todo
 @NgModule({
   declarations: [TodoListComponent],
   exports: [TodoListComponent],
