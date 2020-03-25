@@ -21,10 +21,10 @@ export class TodoListComponent implements OnInit {
 
   // Todo
   add() {
-    // if (this.todoActionName) {
-    //   this.list.push({id: this.list.length, title: this.todoActionName});
-    //   this.todoActionName = '';
-    // }
+    if (this.todoActionName) {
+      this.list.push({id: this.list.length, title: this.todoActionName});
+      this.todoActionName = '';
+    }
   }
 
 }
