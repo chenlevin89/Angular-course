@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {NavigationItem} from './navigation-item';
+import {NavigationItem} from '../../entities/navigation-item';
 
 @Component({
   selector: 'app-navigation',

@@ -9,7 +9,7 @@ export class ActionsGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('Action guard');
+    console.log('Can Activate Guard');
     return true;
   }
 

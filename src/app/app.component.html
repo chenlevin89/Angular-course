@@ -1,8 +1,11 @@
 <!--Todo-->
-<!-- <div class="navigation-container">
+<div class="navigation-container">
   <app-navigation [navigationItems]="navigationItems"></app-navigation>
-</div> -->
+</div>
 
 <div class="router-container">
-  <router-outlet></router-outlet>
+  <div [class.hidden]="loader">
+      <router-outlet></router-outlet>
+  </div>
+  <div *ngIf="loader" class="loader"><div></div><div></div></div>
 </div>

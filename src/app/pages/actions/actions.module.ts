@@ -10,10 +10,10 @@ export const routes: Routes = [
   {
     path: '',
     component: ActionsComponent,
-    // resolve: {
-    //   resolver: ActionsResolverService
-    // },
-    // canActivate: [ActionsGuard]
+    resolve: {
+      todoList: ActionsResolverService
+    },
+    canActivate: [ActionsGuard]
   }
 ]
 

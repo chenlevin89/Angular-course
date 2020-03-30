@@ -1,23 +1,20 @@
 import { Injectable } from '@angular/core';
 import {Resolve, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/router';
-import {Observable} from 'rxjs';
-
-const DATA = {
-  name: 'TestUser'
-}
+import {Observable, timer} from 'rxjs';
+import {TodoListService} from '../../services/todo-list.service';
+import {TodoItem} from '../../entities/todo-item';
+import {mapTo} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActionsResolverService implements Resolve<any> {
+export class ActionsResolverService implements Resolve<TodoItem[]> {
 
-  constructor() { }
+  constructor(private todoListService: TodoListService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  Observable<any> | Promise<any> | any {
-    return new Promise( (resolve, reject) => {
-      setTimeout(() => {
-        resolve(DATA);
-      }, 500)
-    });
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  Observable<TodoItem[]> {
+    const todoList = this.todoListService.getTodoListData();
+    return timer(1000).pipe(mapTo(todoList));
   }
+
 }

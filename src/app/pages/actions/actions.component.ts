@@ -11,16 +11,14 @@ import {ActivatedRoute} from '@angular/router';
 export class ActionsComponent implements OnInit {
 
   todoList: TodoItem[];
-  userName: string;
 
-  constructor(private todoListService: TodoListService, private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.todoList = this.todoListService.getTodoListData();
-    // this.userName = this.route.snapshot.data.resolver.name;
+    this.todoList = this.route.snapshot.data.todoList;
   }
 
   addItem(item: TodoItem): void {
-    this.todoList = [...this.todoList, item]; // Immutable
+    this.todoList = [...this.todoList, item];
   }
 }

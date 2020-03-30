@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {TodoItem} from './entities/todo-item';
-import {TodoListService} from './services/todo-list.service';
-import {NavigationItem} from './components/navigation/navigation-item';
+import {NavigationItem} from './entities/navigation-item';
+import {Router, NavigationEnd, NavigationStart} from '@angular/router';
+import {filter, map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',
@@ -20,8 +21,15 @@ export class AppComponent implements OnInit {
       path: '/actions'
     }
   ];
+  loader: boolean;
+
+  constructor(private router: Router){}
 
   ngOnInit() {
-
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd || e instanceof NavigationStart),
+      map(e => e instanceof NavigationStart),
+    ).subscribe(value => this.loader = value);
   }
+
 }
