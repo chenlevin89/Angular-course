@@ -4,6 +4,7 @@ import {TodoListService} from '../../services/todo-list.service';
 import {ActivatedRoute} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
 
+// Todo
 @Component({
   selector: 'app-actions',
   templateUrl: './actions.component.html',

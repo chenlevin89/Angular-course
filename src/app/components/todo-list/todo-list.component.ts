@@ -2,6 +2,8 @@ import {Component, OnInit, Input, Output, EventEmitter, forwardRef} from '@angul
 import {TodoItem} from '../../entities/todo-item';
 import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
+
+// Todo
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',

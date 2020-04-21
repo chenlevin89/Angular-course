@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {TodoItem} from '../entities/todo-item';
 
+// Todo
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,12 +31,12 @@ export class TodoListService {
     ];
   }
 
-  getSelectedActions(){
-    const selected = localStorage.getItem('selectedActions');
-    return selected ? JSON.parse(selected) : null;
-  }
+  // getSelectedActions(){
+  //   const selected = localStorage.getItem('selectedActions');
+  //   return selected ? JSON.parse(selected) : null;
+  // }
 
-  updateSelectedActions(selection: number[]): void {
-    localStorage.setItem('selectedActions', JSON.stringify(selection));
-  }
+  // updateSelectedActions(selection: number[]): void {
+  //   localStorage.setItem('selectedActions', JSON.stringify(selection));
+  // }
 }
