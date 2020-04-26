@@ -11,6 +11,7 @@
                (change)="onChecked($event, item.id)"
                [checked]="selection.value[item.id]" />
         <label [attr.for]="item.id">{{getTitle(item)}}</label>
+        <!--Todo-->
         <!-- <app-todo-list-item [item]="item"
                             [isChecked]="selection.value[item.id]"
                             (checked)="onChecked($event.event, $event.id)"></app-todo-list-item> -->

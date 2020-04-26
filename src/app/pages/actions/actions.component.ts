@@ -31,4 +31,8 @@ export class ActionsComponent implements OnInit {
   addItem(item: TodoItem): void {
     this.todoList = [...this.todoList, item]; // Immutable
   }
+
+  onClick(){
+    console.log('Button was clicked');
+  }
 }

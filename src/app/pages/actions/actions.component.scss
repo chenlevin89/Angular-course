@@ -10,4 +10,16 @@
     background-color: #fdef;
     color: #E1174B;
   }
+
+  button{
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    border-radius: 50%;
+    height: 60px;
+    background-color: #4c3666;
+    color: white;
+    outline: none;
+    cursor: pointer;
+  }
 }

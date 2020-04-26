@@ -2,6 +2,8 @@ import {Component, OnInit, Input, Output, EventEmitter, forwardRef, ChangeDetect
 import {TodoItem} from '../../entities/todo-item';
 import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
+
+// Todo
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -9,7 +11,7 @@ import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/for
   providers: [
     {provide: NG_VALUE_ACCESSOR, multi: true, useExisting: forwardRef(() => TodoListComponent)}
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
  export class TodoListComponent implements ControlValueAccessor {
 
