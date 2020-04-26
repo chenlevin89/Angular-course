@@ -24,7 +24,7 @@ export class TodoListItemComponent implements OnInit {
   }
 
   getTitle(){
-    console.log(this.item);
+    console.log('TodoListItemComponent >> ',this.item);
     return this.item.title;
   }
 

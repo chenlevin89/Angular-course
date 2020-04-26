@@ -13,7 +13,7 @@ import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/for
   ],
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
- export class TodoListComponent implements ControlValueAccessor {
+export class TodoListComponent implements ControlValueAccessor {
 
   @Input() list: TodoItem[];
   @Output() addItem = new EventEmitter<TodoItem>();
@@ -42,8 +42,8 @@ import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/for
     this.selection.setValue(currentSelection);
   }
 
-  getTitle(item: TodoItem){
-    console.log(item);
+  getTitle(item: TodoItem) {
+    console.log('TodoListComponent >>', item);
     return item.title;
   }
 
@@ -52,14 +52,14 @@ import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/for
       obj.reduce((acc, curr) => {
         acc[curr] = true;
         return acc;
-      }, {}): {};
+      }, {}) : {};
     this.selection.setValue(selection);
   }
 
   registerOnChange(fn: any): void {
-   this.selection.valueChanges.subscribe(value => {
-     fn(Object.keys(value))
-   });
+    this.selection.valueChanges.subscribe(value => {
+      fn(Object.keys(value))
+    });
   }
 
   registerOnTouched(fn: any): void {}
