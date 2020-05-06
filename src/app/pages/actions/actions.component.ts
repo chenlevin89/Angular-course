@@ -3,6 +3,8 @@ import {TodoItem} from '../../entities/todo-item';
 import {TodoListService} from '../../services/todo-list.service';
 import {FormControl, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {map} from 'rxjs/operators';
 
 
 // Todo
@@ -22,13 +24,15 @@ export class ActionsComponent implements OnInit, OnDestroy {
   private onDestroy$ = new Subject();
   // private todoListSubject$ = new Subject<TodoItem>();
 
-  constructor(private todoListService: TodoListService) {}
+  constructor(private todoListService: TodoListService,
+              private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
 
-    this.todoList = this.todoListService.getTodoListData();
+    this.todoList = this.activatedRoute.snapshot.data.list;
 
-    // this.todoList$ = merge(this.todoListService.getTodoListData(), this.todoListSubject$.asObservable())
+    // const resolver$ = this.activatedRoute.data.pipe(map(value => value.list));
+    // this.todoList$ = merge(resolver$, this.todoListSubject$.asObservable())
     //   .pipe(
     //     scan((acc, value) => {
     //       if (Array.isArray(value)) {

@@ -2,6 +2,10 @@
   <app-navigation [navigationItems]="navigationItems"></app-navigation>
 </div>
 
+
 <div class="router-container">
-  <router-outlet></router-outlet>
+  <div [class.hidden]="loader$ | async">
+      <router-outlet></router-outlet>
+  </div>
+  <div *ngIf="loader$ | async" class="loader"><div></div><div></div></div>
 </div>

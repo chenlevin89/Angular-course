@@ -1,8 +1,5 @@
 import {Injectable} from '@angular/core';
 import {TodoItem} from '../entities/todo-item';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {mapTo} from 'rxjs/operators';
 
 // Todo
 @Injectable({
@@ -10,7 +7,7 @@ import {mapTo} from 'rxjs/operators';
 })
 export class TodoListService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
   // getTodoListData(): Observable<TodoItem[]> {
   //   return this.httpClient.get("https://jsonplaceholder.typicode.com/posts").pipe(
