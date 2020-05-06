@@ -1,11 +1,11 @@
 import {Component, OnInit, ChangeDetectionStrategy, OnDestroy} from '@angular/core';
 import {TodoItem} from '../../entities/todo-item';
 import {TodoListService} from '../../services/todo-list.service';
-import {ActivatedRoute} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
-import {takeUntil, scan} from 'rxjs/operators';
-import {Subject, Observable, merge} from 'rxjs';
+import {Subject} from 'rxjs';
 
+
+// Todo
 @Component({
   selector: 'app-actions',
   templateUrl: './actions.component.html',
@@ -22,7 +22,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
   private onDestroy$ = new Subject();
   // private todoListSubject$ = new Subject<TodoItem>();
 
-  constructor(private todoListService: TodoListService, private route: ActivatedRoute) {}
+  constructor(private todoListService: TodoListService) {}
 
   ngOnInit() {
 
@@ -40,17 +40,17 @@ export class ActionsComponent implements OnInit, OnDestroy {
 
     this.selectedActions.setValue(this.todoListService.getSelectedActions());
 
-    // this.selectedActions.valueChanges.subscribe(value => {
-    //   this.todoListService.updateSelectedActions(value);
-    // });
+    this.selectedActions.valueChanges.subscribe(value => {
+      this.todoListService.updateSelectedActions(value);
+    });
 
-    this.selectedActions.valueChanges
-      .pipe(
-        takeUntil(this.onDestroy$)
-      )
-      .subscribe(value => {
-        this.todoListService.updateSelectedActions(value);
-      });
+    // this.selectedActions.valueChanges
+    //   .pipe(
+    //     takeUntil(this.onDestroy$)
+    //   )
+    //   .subscribe(value => {
+    //     this.todoListService.updateSelectedActions(value);
+    //   });
   }
 
   ngOnDestroy() {
