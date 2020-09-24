@@ -19,8 +19,10 @@ jobs:
       - name: list files
         run: ls -a
       - name: print payload
+        env:
+            payload: ${{ toJson(github.event.client_payload) }}
         run: |
-          echo ${{ toJson(github.event.client_payload) }}
+          echo ${payload}
           echo running on branch ${GITHUB_REF##*/}
 
 
