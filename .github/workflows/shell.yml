@@ -7,6 +7,7 @@ on:
 
 env:
   LOCAL_ENV: 'Workflow local env'
+  CUSTOM_TEST_SECRETS: ${{ secrets.CUSTOM_TEST_SECRETS }}
 
 jobs:
   git-checkout:
@@ -16,3 +17,4 @@ jobs:
         run: |
           pwd
           echo ${LOCAL_ENV}
+          echo ${CUSTOM_TEST_SECRETS}
