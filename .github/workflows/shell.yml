@@ -1,0 +1,14 @@
+name: Shell commands
+
+on: [push]
+
+jobs:
+  git-checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: show files
+        run: |
+          pwd
+          ls -a
