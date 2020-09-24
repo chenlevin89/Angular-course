@@ -20,5 +20,5 @@ jobs:
         run: ls -a
       - name: print payload
         run: |
-          echo {{ github.event.client_payload }}
+          echo ${{ github.event.client_payload }}
           echo running on branch ${GITHUB_REF##*/}
