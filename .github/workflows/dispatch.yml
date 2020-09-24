@@ -12,6 +12,8 @@ jobs:
         uses: actions/checkout@v1
         with:
           ref: master
+      - name: npm install
+        run: npm i
       - name: build
         run: npm run build
       - name: list files
