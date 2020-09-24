@@ -2,7 +2,7 @@ name: Dispatch workflow
 
 on:
   repository_dispatch:
-    steps: [deploy]
+    types: [deploy]
 
 jobs:
   run-dispatch-deployment:
