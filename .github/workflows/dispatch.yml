@@ -28,7 +28,7 @@ jobs:
 #   https://api.github.com/repos/chenlevin89/Angular-course/dispatches \
 #   -H 'Accept: application/vnd.github.v3+json' \
 #   -H 'Content-Type: application/json' \
-#   -H 'Authorization: Bearer 4207fc4139d69d07912aa4af2c190a9ad731f60d' \
+#   -H 'Authorization: Bearer [Token]' \
 #   -H 'cache-control: no-cache' \
 #   -d '{
 #         "event_type": "deploy",
