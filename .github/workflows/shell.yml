@@ -5,13 +5,14 @@ on:
     branches-ignore:
         - "master"
 
+env:
+  LOCAL_ENV: 'Workflow local env'
+
 jobs:
   git-checkout:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v1
-      - name: show files
+      - name: prints
         run: |
           pwd
-          ls -a
+          echo ${LOCAL_ENV}
