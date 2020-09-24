@@ -1,6 +1,9 @@
 name: Shell commands
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+        - "master"
 
 jobs:
   git-checkout:
