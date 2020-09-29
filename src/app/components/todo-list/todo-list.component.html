@@ -18,7 +18,12 @@
 
 
 <!--Todo-->
-<input class="new-todo" type="text" placeholder="Enter new action..." [(ngModel)]="todoActionName" />
+<input class="new-todo"
+       type="text"
+       placeholder="Enter new action..."
+       [(ngModel)]="todoActionName"
+       (keydown)="onKeyDown($event)" />
+<p class="error" *ngIf="showErrorMessage">{{todoActionName +  ' is already exist'}}</p>
 
 
 
