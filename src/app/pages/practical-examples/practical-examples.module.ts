@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PracticalExamplesComponent } from './practical-examples.component';
-import {Routes, RouterModule} from '@angular/router';
-import {ReactiveFormsModule} from '@angular/forms';
-import {DropdownModule} from '../../components/dropdown/dropdown.module';
-import {AccordionModule} from '../../components/accordion/accordion.module';
-import {TooltipModule} from '../../directives/tooltip/tooltip.module';
+import { Routes, RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from '../../components/dropdown/dropdown.module';
+import { AccordionModule } from '../../components/accordion/accordion.module';
+import { TooltipModule } from '../../directives/tooltip/tooltip.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: PracticalExamplesComponent
-  }
+    component: PracticalExamplesComponent,
+  },
 ];
 
 @NgModule({
@@ -22,7 +22,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     DropdownModule,
     AccordionModule,
-    TooltipModule
-  ]
+    TooltipModule,
+  ],
 })
-export class PracticalExamplesModule { }
+export class PracticalExamplesModule {}

@@ -5,7 +5,7 @@ import { ActionsGuard } from './actions.guard';
 describe('ActionsGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ActionsGuard]
+      providers: [ActionsGuard],
     });
   });
 

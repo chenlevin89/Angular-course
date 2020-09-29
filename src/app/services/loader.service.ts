@@ -1,20 +1,18 @@
 import { Injectable, OnInit } from '@angular/core';
-import {Subject, Observable} from 'rxjs';
-import {startWith} from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs';
+import { startWith } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class LoaderService  {
-
+export class LoaderService {
   private loader$ = new Subject<boolean>();
 
   loaderStatus$ = this.loader$.asObservable();
 
-  constructor() { }
+  constructor() {}
 
-  setLoaderStatus(status: boolean){
+  setLoaderStatus(status: boolean) {
     this.loader$.next(status);
   }
-
 }

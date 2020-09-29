@@ -1,18 +1,33 @@
-import {Component, OnInit, Input, Output, EventEmitter, forwardRef, ChangeDetectionStrategy} from '@angular/core';
-import {TodoItem} from '../../entities/todo-item';
-import {FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  forwardRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { TodoItem } from '../../entities/todo-item';
+import {
+  FormControl,
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
   providers: [
-    {provide: NG_VALUE_ACCESSOR, multi: true, useExisting: forwardRef(() => TodoListComponent)}
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => TodoListComponent),
+    },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoListComponent implements ControlValueAccessor {
-
   @Input() list: TodoItem[];
   @Output() addItem = new EventEmitter<TodoItem>();
 
@@ -23,7 +38,10 @@ export class TodoListComponent implements ControlValueAccessor {
 
   add(): void {
     if (this.todoActionName) {
-      const addedItem: TodoItem = {id: this.list.length, title: this.todoActionName};
+      const addedItem: TodoItem = {
+        id: this.list.length,
+        title: this.todoActionName,
+      };
       this.addItem.emit(addedItem);
       this.todoActionName = '';
     }
@@ -41,20 +59,21 @@ export class TodoListComponent implements ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    const selection = obj && Array.isArray(obj) ?
-      obj.reduce((acc, curr) => {
-        acc[curr] = true;
-        return acc;
-      }, {}) : {};
+    const selection =
+      obj && Array.isArray(obj)
+        ? obj.reduce((acc, curr) => {
+            acc[curr] = true;
+            return acc;
+          }, {})
+        : {};
     this.selection.setValue(selection);
   }
 
   registerOnChange(fn: any): void {
-    this.selection.valueChanges.subscribe(value => {
+    this.selection.valueChanges.subscribe((value) => {
       fn(Object.keys(value));
     });
   }
 
   registerOnTouched(fn: any): void {}
-
 }
