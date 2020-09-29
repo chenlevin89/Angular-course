@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ActionsComponent } from './actions.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ActionsComponent} from './actions.component';
 import {Routes, RouterModule} from '@angular/router';
 import {TodoListModule} from '../../components/todo-list/todo-list.module';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -14,7 +14,7 @@ export const routes: Routes = [
       data: ActionsResolverService
     }
   }
-]
+];
 
 @NgModule({
   declarations: [ActionsComponent],
@@ -25,4 +25,4 @@ export const routes: Routes = [
     ReactiveFormsModule
   ]
 })
-export class ActionsModule { }
+export class ActionsModule {}

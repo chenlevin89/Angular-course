@@ -12,7 +12,7 @@ export class TodoListService {
   constructor(private httpClient: HttpClient) {}
 
   getTodoListData(): Observable<TodoItem[]> {
-    return this.httpClient.get("https://jsonplaceholder.typicode.com/posts").pipe(
+    return this.httpClient.get('https://jsonplaceholder.typicode.com/posts').pipe(
       mapTo([
         {
           id: 0,

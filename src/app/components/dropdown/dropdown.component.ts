@@ -37,7 +37,7 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, OnDestro
   }
 
   searchChanged(term: string) {
-    if(!term){
+    if (!term) {
       this.displayedOptions$.next(this.sourceOptions);
     } else {
       const options = this.sourceOptions.filter(option => option.text.toLowerCase().indexOf(term.toLocaleLowerCase()) !== -1);
@@ -45,7 +45,7 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, OnDestro
     }
   }
 
-  selectOption(option: DropdownOption){
+  selectOption(option: DropdownOption) {
     this.selected.setValue(option);
     this.toggle = false;
   }

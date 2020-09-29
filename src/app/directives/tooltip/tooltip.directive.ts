@@ -11,7 +11,8 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
   private componentRef: ComponentRef<TooltipComponent>;
   private onDestroy$ = new Subject();
 
-  constructor(private elementRef: ElementRef,
+  constructor(
+    private elementRef: ElementRef,
     private vcr: ViewContainerRef,
     private renderer: Renderer2,
     private cfr: ComponentFactoryResolver) {}

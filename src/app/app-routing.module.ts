@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
 
 export const routes: Routes = [
@@ -20,7 +20,7 @@ export const routes: Routes = [
     path: 'practical-examples',
     loadChildren: () => import('./pages/practical-examples/practical-examples.module').then(m => m.PracticalExamplesModule)
   }
-]
+];
 
 @NgModule({
   declarations: [],
@@ -30,4 +30,4 @@ export const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

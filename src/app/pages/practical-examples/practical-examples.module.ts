@@ -12,7 +12,7 @@ const routes: Routes = [
     path: '',
     component: PracticalExamplesComponent
   }
-]
+];
 
 @NgModule({
   declarations: [PracticalExamplesComponent],

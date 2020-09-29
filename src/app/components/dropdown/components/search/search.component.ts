@@ -10,7 +10,7 @@ import {takeUntil, debounceTime, distinctUntilChanged, map} from 'rxjs/operators
 export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('search') search: ElementRef;
-  @Output() searchChanged = new EventEmitter<string>()
+  @Output() searchChanged = new EventEmitter<string>();
 
   private onDestroy$ = new Subject();
 
@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
       )
       .subscribe(term => {
         this.searchChanged.emit(term);
-      })
+      });
   }
 
 }

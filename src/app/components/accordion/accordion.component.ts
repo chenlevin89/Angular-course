@@ -9,7 +9,7 @@ export class AccordionComponent implements OnInit {
 
   @Input() header: string;
 
-  toggle = false
+  toggle = false;
 
   constructor() { }
 
