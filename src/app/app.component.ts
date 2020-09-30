@@ -10,7 +10,7 @@ import {TodoListComponent} from './components/todo-list/todo-list.component';
 })
 export class AppComponent implements OnInit {
 
-  // @ViewChild('todoListComponent', {static: false}) todoListComponent: TodoListComponent;
+  @ViewChild('todoListComponent', {static: false}) todoListComponent: TodoListComponent;
 
   todoList: TodoItem[];
 
@@ -24,11 +24,8 @@ export class AppComponent implements OnInit {
     this.todoList = [...this.todoList, item]; // Immutable
   }
 
-  // printValue(){
-  //   console.log(this.todoListComponent.todoActionName);
-  // }
+  printValue(){
+    console.log(this.todoListComponent.todoActionName);
+  }
 
-  // printValueThrowService(){
-  //   this.todoListService.invokeCallbacks('printCallback');
-  // }
 }

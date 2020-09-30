@@ -14,7 +14,7 @@ export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
 
   todoActionName = '';
 
-  constructor(private todoListService: TodoListService) {}
+  constructor() {}
 
   add(): void {
     if (this.todoActionName) {
@@ -30,7 +30,6 @@ export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
 
   ngOnInit() {
     console.log('Component Initialize');
-    // this.todoListService.registerFunc({key: 'printCallback', func: this.callBackFunction.bind(this)});
   }
 
   ngAfterViewInit() {
@@ -40,9 +39,5 @@ export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
   ngOnDestroy() {
     console.log('Component destroy');
   }
-
-  // private callBackFunction(): void{
-  //   console.log(this.todoActionName);
-  // }
 
 }
