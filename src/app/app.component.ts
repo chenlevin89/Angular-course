@@ -10,7 +10,7 @@ import {TodoListComponent} from './components/todo-list/todo-list.component';
 })
 export class AppComponent implements OnInit {
 
-  @ViewChild('todoListComponent', {static: false}) todoListComponent: TodoListComponent;
+  @ViewChild('todoListComponent') todoListComponent: TodoListComponent;
 
   todoList: TodoItem[];
 
