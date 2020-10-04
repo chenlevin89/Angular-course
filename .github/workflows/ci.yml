@@ -17,6 +17,8 @@ jobs:
           with:
             path: ~/.npm
             key: ${{ runner.os }}-app-dependencies-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-app-dependencies-
         - name: install dependencies
           run: npm ci
         - name: run linting
