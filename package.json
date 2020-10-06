@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --prod --deploy-url /v$VERSION/",
+    "build:dev":"ng build --configuration dev --deploy-url /v$VERSION/",
     "test": "ng test --watch false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
