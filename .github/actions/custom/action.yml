@@ -1,0 +1,17 @@
+name: Custom action
+author: Chen levin
+description: Some Custom Action
+
+inputs:
+  param1:
+    description: "Enter param 1"
+    required: true
+    default: test
+
+outputs:
+  result:
+    description: "Custom Action result"
+
+runs:
+  using: "node12"
+  main: "dist/index.js"

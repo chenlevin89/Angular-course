@@ -1,20 +1,22 @@
-name: Shell commands
+name: Test Custom action
 
-on:
-  pull_request:
-    branches-ignore:
-        - "master"
+on: [push]
+
 
 env:
   LOCAL_ENV: 'Workflow local env'
   CUSTOM_TEST_SECRETS: ${{ secrets.CUSTOM_TEST_SECRETS }}
 
 jobs:
-  git-checkout:
+  run-custom-action:
     runs-on: ubuntu-latest
     steps:
-      - name: prints
-        run: |
-          pwd
-          echo ${LOCAL_ENV}
-          echo ${CUSTOM_TEST_SECRETS}
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Execute custom action
+        uses: ./.github/actions/custom
+        id: custom-action
+        with:
+          param1: 'Hello world'
+      - name: Print custom action result
+        run: echo "Custom action result ${{ steps.custom-action.outputs.result }} "
