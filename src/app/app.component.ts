@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {TodoItem} from './entities/todo-item';
 import {TodoListService} from './services/todo-list.service';
-import {TodoListComponent} from './components/todo-list/todo-list.component';
+import {Widget} from './entities/widget';
 
 @Component({
   selector: 'app-root',
@@ -10,22 +10,25 @@ import {TodoListComponent} from './components/todo-list/todo-list.component';
 })
 export class AppComponent implements OnInit {
 
-  @ViewChild('todoListComponent') todoListComponent: TodoListComponent;
-
   todoList: TodoItem[];
+  widget: Widget;
 
   constructor(private todoListService: TodoListService) {}
 
   ngOnInit() {
     this.todoList = this.todoListService.getTodoListData();
+    this.widget = {text: 'Selected', payload: 0};
   }
 
   addItem(item: TodoItem): void {
     this.todoList = [...this.todoList, item]; // Immutable
   }
 
-  printValue(){
-    console.log(this.todoListComponent.todoActionName);
+  checkedChanged(value: number){
+    this.widget = {
+      ...this.widget,
+      payload: this.widget.payload + value
+    };
   }
 
 }

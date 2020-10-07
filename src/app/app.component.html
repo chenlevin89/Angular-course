@@ -1,3 +1,2 @@
-<app-todo-list [list]="todoList" (addItem)="addItem($event)" #todoListComponent></app-todo-list>
-<button (click)="printValue()">View Child</button>
-
+<app-todo-list [list]="todoList" (addItem)="addItem($event)" (checkedChanged)="checkedChanged($event)"></app-todo-list>
+<app-display-widget [widget]="widget" ></app-display-widget>

@@ -14,4 +14,10 @@
     outline: none;
     cursor: pointer;
   }
+
+  app-display-widget{
+    position: fixed;
+    top: 25px;
+    right: 25px;
+  }
 }

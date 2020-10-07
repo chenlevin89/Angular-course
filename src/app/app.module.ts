@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {TodoListModule} from './components/todo-list/todo-list.module';
+import {DisplayWidgetModule} from './components/display-widget/display-widget.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import {TodoListModule} from './components/todo-list/todo-list.module';
   ],
   imports: [
     BrowserModule,
-    TodoListModule
+    TodoListModule,
+    DisplayWidgetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
