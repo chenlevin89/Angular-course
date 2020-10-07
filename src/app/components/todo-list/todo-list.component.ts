@@ -11,6 +11,7 @@ export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
 
   @Input() list: TodoItem[];
   @Output() addItem = new EventEmitter<TodoItem>();
+  @Output() checkedChanged = new EventEmitter<number>();
 
   todoActionName = '';
 
@@ -24,8 +25,12 @@ export class TodoListComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
     }
   }
 
-  ngOnChanges(changes:SimpleChanges): void {
-   console.log(changes);
+  checkboxChanged(val) {
+    this.checkedChanged.emit(val ? 1 : -1);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 
   ngOnInit() {

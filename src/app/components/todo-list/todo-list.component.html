@@ -6,7 +6,8 @@
       <div class="todo-item"
            *ngFor="let item of list" appTooltip>
         <input type="checkbox"
-               [attr.id]="item.id" />
+               [attr.id]="item.id"
+               (change)="checkboxChanged($event.target.checked)" />
         <label [attr.for]="item.id">{{item.title | uppercase}}</label>
       </div>
     </div>
