@@ -49,7 +49,7 @@ jobs:
         env:
           param: ${{ steps.exposeBucketTags.outputs.bucketTags }}
         with:
-          bucketTagsJson: $param
+          bucketTagsJson: '{"a":1}'
       - name: print version
         run: echo "${{ steps.exposeBucketTags.outputs.version }}"
       - name: build production artifacts
