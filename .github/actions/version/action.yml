@@ -3,7 +3,7 @@ author: Chen levin
 
 
 inputs:
-  bucketTagsContent:
+  bucketTagsJson:
     description: "Enter bucket tags content"
     required: true
 

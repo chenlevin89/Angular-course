@@ -40,7 +40,7 @@ jobs:
         id: currentVersion
         uses: ./.github/actions/version
         with:
-          bucketTagsContent: ${{ steps.exposeBucketTags.outputs.bucketTags }}
+          bucketTagsJson: ${{ steps.exposeBucketTags.outputs.bucketTags }}
       - name: print version
         run: echo "${{ steps.exposeBucketTags.outputs.version }}"
       - name: build production artifacts
