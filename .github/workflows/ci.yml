@@ -12,6 +12,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: cache node_modules
+        if: github.ref == 'refs/heads/master'
         uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -19,13 +20,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-app-dependencies-
       - name: install dependencies
+        if: github.ref == 'refs/heads/master'
         run: npm ci
       - name: run linting
         run: npm run lint
+        if: github.ref == 'refs/heads/master'
       - name: run prettier
         run: npm run prettier:check
+        if: github.ref == 'refs/heads/master'
       - name: run unittest
         run: npm run test
+        if: github.ref == 'refs/heads/master'
       - name: expose bucket tags (get from aws)
         id: exposeBucketTags
         run: |
@@ -35,7 +40,7 @@ jobs:
         id: currentVersion
         uses: ./.github/actions/version
         with:
-          bucketTagsContent: ${{ steps.exposeBucketTags.outputs.bucketTagsContent }}
+          bucketTagsContent: ${{ steps.exposeBucketTags.outputs.bucketTags }}
       - name: print version
         run: echo "${{ steps.exposeBucketTags.outputs.version }}"
       - name: build production artifacts
