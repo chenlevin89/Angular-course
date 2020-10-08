@@ -36,11 +36,16 @@ jobs:
         run: |
           bucketTagsContent=$(cat ./bucket.json)
           echo "::set-output name=bucketTags::$bucketTagsContent"
+      - run: |
+          echo "$bucketTagsContent"
+          echo "{{ toJson(bucketTagsContent) }}""
       - name: get version
         id: currentVersion
         uses: ./.github/actions/version
+        env:
+          param: ${{ steps.exposeBucketTags.outputs.bucketTags }}
         with:
-          bucketTagsJson: ${{ steps.exposeBucketTags.outputs.bucketTags }}
+          bucketTagsJson: $param
       - name: print version
         run: echo "${{ steps.exposeBucketTags.outputs.version }}"
       - name: build production artifacts
