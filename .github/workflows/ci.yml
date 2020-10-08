@@ -1,43 +1,50 @@
 name: ci
 
-on:
-  push:
-    branches-ignore:
-        - "master"
+on: [push]
 
 env:
   VERSION: 1
-
 
 jobs:
   ci-flow:
     runs-on: ubuntu-latest
     steps:
-        - name: checkout
-          uses: actions/checkout@v2
-        - name: cache node_modules
-          uses: actions/cache@v1
-          with:
-            path: ~/.npm
-            key: ${{ runner.os }}-app-dependencies-${{ hashFiles('**/package-lock.json') }}
-            restore-keys: |
-              ${{ runner.os }}-app-dependencies-
-        - name: install dependencies
-          run: npm ci
-        - name: run linting
-          run: npm run lint
-        - name: run prettier
-          run: npm run prettier:check
-        - name: run unittest
-          run: npm run test
-        - name: build production artifacts
-          if: github.ref == 'refs/heads/master'
-          run: |
-            echo "Start prod building application version $VERSION"
-            VERSION=$VERSION npm run build
-        - name: build dev artifacts
-          if: github.ref != 'refs/heads/master'
-          run: |
-            echo "Start dev building application version $VERSION"
-            VERSION=$VERSION npm run build:dev
-
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-app-dependencies-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-app-dependencies-
+      - name: install dependencies
+        run: npm ci
+      - name: run linting
+        run: npm run lint
+      - name: run prettier
+        run: npm run prettier:check
+      - name: run unittest
+        run: npm run test
+      - name: expose bucket tags (get from aws)
+        id: exposeBucketTags
+        run: |
+          bucketTagsContent=$(cat ./bucket.json)
+          echo "::set-output name=bucketTags::$bucketTagsContent"
+      - name: get version
+        id: currentVersion
+        uses: ./.github/actions/version
+        with:
+          bucketTagsContent: ${{ steps.exposeBucketTags.outputs.bucketTagsContent }}
+      - name: print version
+        run: echo "${{ steps.exposeBucketTags.outputs.version }}"
+      - name: build production artifacts
+        if: github.ref == 'refs/heads/master'
+        run: |
+          echo "Start prod building application version $VERSION"
+          VERSION=$VERSION npm run build
+      - name: build dev artifacts
+        if: github.ref == 'refs/heads/master'
+        run: |
+          echo "Start dev building application version $VERSION"
+          VERSION=$VERSION npm run build:dev
