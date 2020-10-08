@@ -39,19 +39,8 @@ jobs:
           bucketTagsContent="${bucketTagsContent//$'\n'/'%0A'}"
           bucketTagsContent="${bucketTagsContent//$'\r'/'%0D'}"
           echo "::set-output name=bucketTags::$bucketTagsContent"
-      - env:
-          param: ${{ steps.exposeBucketTags.outputs.bucketTags }}
-        run: |
-          echo  $param
-      - name: get version
-        id: currentVersion
-        uses: ./.github/actions/version
-        env:
-          param: ${{ steps.exposeBucketTags.outputs.bucketTags }}
-        with:
-          bucketTagsJson: '{"a":1}'
       - name: print version
-        run: echo "${{ steps.exposeBucketTags.outputs.version }}"
+        run: echo "${{ fromJson(steps.exposeBucketTags.outputs.bucketTags).Tags[0].Value }}"
       - name: build production artifacts
         if: github.ref == 'refs/heads/master'
         run: |
