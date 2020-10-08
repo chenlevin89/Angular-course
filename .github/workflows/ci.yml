@@ -40,7 +40,7 @@ jobs:
           bucketTagsContent="${bucketTagsContent//$'\r'/'%0D'}"
           echo "::set-output name=bucketTags::$bucketTagsContent"
       - name: print version
-        run: echo "${{ fromJson(steps.exposeBucketTags.outputs.bucketTags).Tags[0].Value }}"
+        run: echo "${{ fromJson(steps.exposeBucketTags.outputs.bucketTags).TagSet[0].Value }}"
       - name: build production artifacts
         if: github.ref == 'refs/heads/master'
         run: |
