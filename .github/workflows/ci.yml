@@ -43,7 +43,6 @@ jobs:
           param: ${{ steps.exposeBucketTags.outputs.bucketTags }}
         run: |
           echo  $param
-          echo "{{ toJson(param) }}""
       - name: get version
         id: currentVersion
         uses: ./.github/actions/version
