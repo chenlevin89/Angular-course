@@ -35,10 +35,15 @@ jobs:
         id: exposeBucketTags
         run: |
           bucketTagsContent=$(cat ./bucket.json)
+          bucketTagsContent="${bucketTagsContent//'%'/'%25'}"
+          bucketTagsContent="${bucketTagsContent//$'\n'/'%0A'}"
+          bucketTagsContent="${bucketTagsContent//$'\r'/'%0D'}"
           echo "::set-output name=bucketTags::$bucketTagsContent"
-      - run: |
-          echo "$bucketTagsContent"
-          echo "{{ toJson(bucketTagsContent) }}""
+      - env:
+          param: ${{ steps.exposeBucketTags.outputs.bucketTags }}
+        run: |
+          echo  $param
+          echo "{{ toJson(param) }}""
       - name: get version
         id: currentVersion
         uses: ./.github/actions/version
