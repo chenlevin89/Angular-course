@@ -1,11 +1,20 @@
 name: ci
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Select branch default running branch
+        required: false
+
 
 jobs:
   ci-flow:
     runs-on: ubuntu-latest
     steps:
+      - name: Print branch
+        run: echo ${{ github.event.inputs.name || 'master' }}
       - name: Checkout
         uses: actions/checkout@v2
       - name: Cache node_modules
