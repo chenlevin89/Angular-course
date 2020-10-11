@@ -6,8 +6,8 @@ on:
         - "none"
   workflow_dispatch:
     inputs:
-      branch:
-        description: Select branch default running branch
+      param1:
+        description: Select param1 please
         required: false
 
 
@@ -15,8 +15,8 @@ jobs:
   ci-flow:
     runs-on: ubuntu-latest
     steps:
-      - name: Print branch
-        run: echo ${{ github.event.inputs.name || 'master' }}
+      - name: Print workflow dispatch inputs
+        run: echo ${{ github.event.inputs.param1 || 'none' }}
       - name: Checkout
         uses: actions/checkout@v2
       - name: Cache node_modules
