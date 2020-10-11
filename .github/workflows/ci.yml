@@ -60,6 +60,6 @@ jobs:
         env:
           tags: ${{ steps.custom-action.outputs.tags }}
         run: |
-          # Replace line with: npx aws s3api put-bucket-tagging --bucket my-bucket --tagging $tags
+          # Replace line with: npx aws s3api put-bucket-tagging --bucket chen-levin-test --tagging $tags
           echo "$tags"
 
