@@ -24,11 +24,11 @@ jobs:
       - run: |
           echo "${{steps.exposeBucketTags.outputs.bucketTags}}"
       - name: Execute custom action
-        uses: ./.github/actions/custom
+        uses: ./.github/actions/version
         id: custom-action
         env:
           param: ${{steps.exposeBucketTags.outputs.bucketTags}}
         with:
-          param1: ${{env.param}}
+          bucketTagsJson: ${{env.param}}
       - name: Print custom action result
-        run: echo "Custom action result ${{ steps.custom-action.outputs.result }} "
+        run: echo "Custom action result ${{ steps.custom-action.outputs.version }} "
