@@ -27,7 +27,7 @@ jobs:
         uses: ./.github/actions/custom
         id: custom-action
         env:
-          param: '{"a":1}'
+          param: ${{steps.exposeBucketTags.outputs.bucketTags}}
         with:
           param1: ${{env.param}}
       - name: Print custom action result
