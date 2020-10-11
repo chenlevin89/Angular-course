@@ -1,6 +1,6 @@
 name: Test Custom action
 
-on: [pull_request]
+on: [push]
 
 
 env:
@@ -17,6 +17,6 @@ jobs:
         uses: ./.github/actions/custom
         id: custom-action
         with:
-          param1: 'Hello world'
+          param1: '{"a":1}'
       - name: Print custom action result
         run: echo "Custom action result ${{ steps.custom-action.outputs.result }} "

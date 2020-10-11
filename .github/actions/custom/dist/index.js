@@ -5100,6 +5100,7 @@ const github = __webpack_require__(469);
 try {
   const param1 = core.getInput('param1');
   console.log(`Printing custom action param ${param1}`);
+  console.log(`Printing custom action param json ${JSON.parse(param1)}`);
 
   const result = 'Success';
   core.setOutput('result', result) // Must result as string use JSON.stringify
