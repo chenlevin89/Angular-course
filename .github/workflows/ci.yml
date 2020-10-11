@@ -2,60 +2,64 @@ name: ci
 
 on: [push]
 
-
 jobs:
   ci-flow:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: cache node_modules
+      - name: Cache node_modules
         uses: actions/cache@v1
         with:
           path: ~/.npm
           key: ${{ runner.os }}-app-dependencies-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-app-dependencies-
-      - name: install dependencies
+      - name: Install dependencies
         run: npm ci
-      - name: run linting
+      - name: Run linting
         run: npm run lint
-      - name: run prettier
+      - name: Run prettier
         run: npm run prettier:check
-      - name: run unittest
+      - name: Run unittest
         run: npm run test
-      - name: expose bucket tags (get from aws)
+      - name: Expose bucket tags (get from aws)
         id: expose-bucket-tags
         run: |
+          # Replace first line with: content=$(aws s3api get-bucket-tagging --bucket chen-levin-test)
           bucketTagsContent=$(cat ./bucket.json)
           bucketTagsContent="${bucketTagsContent//'%'/'%25'}"
           bucketTagsContent="${bucketTagsContent//$'\n'/'%0A'}"
           bucketTagsContent="${bucketTagsContent//$'\r'/'%0D'}"
           echo "::set-output name=bucketTags::$bucketTagsContent"
-      - name: execute custom action
+      - name: Execute custom action
         uses: ./.github/actions/version
         id: custom-action
         env:
           param: ${{steps.expose-bucket-tags.outputs.bucketTags}}
         with:
           param1: ${{env.param}}
-      - name: build production artifacts
+      - name: Build production artifacts
         if: github.ref == 'refs/heads/master'
         env:
           version: ${{ steps.custom-action.outputs.version }}
         run: |
           echo "Start prod building application version $version"
           VERSION=$version npm run build
-      - name: build dev artifacts
+      - name: Build dev artifacts
         env:
           version: ${{ steps.custom-action.outputs.version }}
         if: github.ref != 'refs/heads/master'
         run: |
           echo "Start dev building application version $version"
           VERSION=$version npm run build:dev
-      - name: update bucket tags (aws)
+      - name: Deploy to s3 bucket
+        run: |
+          echo "Run npm script for deploying to s3 bucket"
+      - name: Update bucket tags (aws)
         env:
           tags: ${{ steps.custom-action.outputs.tags }}
         run: |
+          # Replace line with: npx aws s3api put-bucket-tagging --bucket my-bucket --tagging $tags
           echo "$tags"
 
