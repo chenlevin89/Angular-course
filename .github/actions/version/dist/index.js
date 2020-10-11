@@ -124,7 +124,8 @@ exports.issueCommand = issueCommand;
 const core = __webpack_require__(470);
 
 try {
-  const bucketTagsContent = core.getInput('bucketTagsContent');
+  const bucketTagsContent = core.getInput('param1');
+  console.log(bucketTagsContent);
   const bucketTags = JSON.parse(bucketTagsContent);
   const version = bucketTags.TagSet.find(curr => curr.Key === 'version').Value;
 

@@ -29,6 +29,6 @@ jobs:
         env:
           param: ${{steps.exposeBucketTags.outputs.bucketTags}}
         with:
-          bucketTagsJson: ${{env.param}}
+          param1: ${{env.param}}
       - name: Print custom action result
         run: echo "Custom action result ${{ steps.custom-action.outputs.version }} "
