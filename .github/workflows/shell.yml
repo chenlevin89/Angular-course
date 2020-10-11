@@ -29,6 +29,6 @@ jobs:
         env:
           param: '{"a":1}'
         with:
-          param1: $param
+          param1: ${{param}}
       - name: Print custom action result
         run: echo "Custom action result ${{ steps.custom-action.outputs.result }} "
