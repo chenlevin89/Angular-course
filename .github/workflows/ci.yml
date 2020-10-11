@@ -12,7 +12,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: cache node_modules
-        if: github.ref == 'refs/heads/master'
         uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -20,17 +19,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-app-dependencies-
       - name: install dependencies
-        if: github.ref == 'refs/heads/master'
         run: npm ci
       - name: run linting
         run: npm run lint
-        if: github.ref == 'refs/heads/master'
       - name: run prettier
         run: npm run prettier:check
-        if: github.ref == 'refs/heads/master'
       - name: run unittest
         run: npm run test
-        if: github.ref == 'refs/heads/master'
       - name: expose bucket tags (get from aws)
         id: expose-bucket-tags
         run: |
@@ -46,19 +41,17 @@ jobs:
           param: ${{steps.expose-bucket-tags.outputs.bucketTags}}
         with:
           param1: ${{env.param}}
-      - name: expose version variable
+      - name: build production artifacts
+        if: github.ref == 'refs/heads/master'
         env:
           version: ${{ steps.custom-action.outputs.version }}
         run: |
-          echo "current version => $version"
-          echo "::set-output name=currentVersion::$version"
-      - name: build production artifacts
-        if: github.ref == 'refs/heads/master'
-        run: |
-          echo "Start prod building application version $VERSION"
+          echo "Start prod building application version $version"
           VERSION=$VERSION npm run build
       - name: build dev artifacts
-        if: github.ref == 'refs/heads/master'
+        env:
+          version: ${{ steps.custom-action.outputs.version }}
+        if: github.ref != 'refs/heads/master'
         run: |
-          echo "Start dev building application version $VERSION"
+          echo "Start dev building application version $version"
           VERSION=$VERSION npm run build:dev
