@@ -32,16 +32,23 @@ jobs:
         run: npm run test
         if: github.ref == 'refs/heads/master'
       - name: expose bucket tags (get from aws)
-        id: exposeBucketTags
+        id: expose-bucket-tags
         run: |
           bucketTagsContent=$(cat ./bucket.json)
           bucketTagsContent="${bucketTagsContent//'%'/'%25'}"
           bucketTagsContent="${bucketTagsContent//$'\n'/'%0A'}"
           bucketTagsContent="${bucketTagsContent//$'\r'/'%0D'}"
           echo "::set-output name=bucketTags::$bucketTagsContent"
-      - name: expose version
+      - name: execute custom action
+        uses: ./.github/actions/version
+        id: custom-action
         env:
-          version: ${{ fromJson(steps.exposeBucketTags.outputs.bucketTags).TagSet[0].Value }}
+          param: ${{steps.expose-bucket-tags.outputs.bucketTags}}
+        with:
+          param1: ${{env.param}}
+      - name: expose version variable
+        env:
+          version: ${{ steps.custom-action.outputs.version }}
         run: |
           echo "current version => $version"
           echo "::set-output name=currentVersion::$version"

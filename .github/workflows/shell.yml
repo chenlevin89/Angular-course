@@ -1,6 +1,6 @@
 name: Test Custom action
 
-on: [push]
+on: [pull_request]
 
 
 env:
