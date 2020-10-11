@@ -2,8 +2,6 @@ name: ci
 
 on: [push]
 
-env:
-  VERSION: 1
 
 jobs:
   ci-flow:
@@ -47,11 +45,17 @@ jobs:
           version: ${{ steps.custom-action.outputs.version }}
         run: |
           echo "Start prod building application version $version"
-          VERSION=$VERSION npm run build
+          VERSION=$version npm run build
       - name: build dev artifacts
         env:
           version: ${{ steps.custom-action.outputs.version }}
         if: github.ref != 'refs/heads/master'
         run: |
           echo "Start dev building application version $version"
-          VERSION=$VERSION npm run build:dev
+          VERSION=$version npm run build:dev
+      - name: update bucket tags (aws)
+        env:
+          tags: ${{ steps.custom-action.outputs.tags }}
+        run: |
+          echo "$tags"
+

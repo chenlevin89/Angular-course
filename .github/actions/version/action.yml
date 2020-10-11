@@ -11,6 +11,8 @@ inputs:
 outputs:
   version:
     description: "Expose current version"
+  tags:
+    description: "Updated bucket tags"
 
 runs:
   using: "node12"
