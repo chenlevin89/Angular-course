@@ -13,10 +13,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: expose bucket tags (get from aws)
+        id: exposeBucketTags
+        run: |
+          bucketTagsContent=$(cat ./bucket.json)
+          bucketTagsContent="${bucketTagsContent//'%'/'%25'}"
+          bucketTagsContent="${bucketTagsContent//$'\n'/'%0A'}"
+          bucketTagsContent="${bucketTagsContent//$'\r'/'%0D'}"
+          echo "::set-output name=bucketTags::$bucketTagsContent"
+      - run: |
+          echo "${{steps.exposeBucketTags.outputs.bucketTags}}"
       - name: Execute custom action
         uses: ./.github/actions/custom
         id: custom-action
+        env:
+          param: '{"a":1}'
         with:
-          param1: '{"a":1}'
+          param1: $param
       - name: Print custom action result
         run: echo "Custom action result ${{ steps.custom-action.outputs.result }} "
