@@ -1,19 +1,21 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import {NavigationItem} from './navigation-item';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { NavigationItem } from './navigation-item';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent implements OnInit {
-
   @Input() navigationItems: NavigationItem[];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -2,24 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {NavigationModule} from './components/navigation/navigation.module';
-import {HttpClientModule} from '@angular/common/http';
-import {LoaderModule} from './components/loader/loader.module';
-
+import { AppRoutingModule } from './app-routing.module';
+import { NavigationModule } from './components/navigation/navigation.module';
+import { HttpClientModule } from '@angular/common/http';
+import { LoaderModule } from './components/loader/loader.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NavigationModule,
     HttpClientModule,
-    LoaderModule
+    LoaderModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

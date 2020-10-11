@@ -1,23 +1,29 @@
 import { Injectable } from '@angular/core';
-import {Resolve, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/router';
-import {Observable} from 'rxjs';
+import {
+  Resolve,
+  RouterStateSnapshot,
+  ActivatedRouteSnapshot,
+} from '@angular/router';
+import { Observable } from 'rxjs';
 
 const DATA = {
-  name: 'TestUser'
-}
+  name: 'TestUser',
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ActionsResolverService implements Resolve<any> {
+  constructor() {}
 
-  constructor() { }
-
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  Observable<any> | Promise<any> | any {
-    return new Promise( (resolve, reject) => {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any> | Promise<any> | any {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(DATA);
-      }, 1000)
+      }, 1000);
     });
   }
 }

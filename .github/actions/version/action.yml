@@ -1,0 +1,19 @@
+name: export version
+author: Chen levin
+
+
+inputs:
+  param1:
+    description: "Enter bucket tags content"
+    required: true
+
+
+outputs:
+  version:
+    description: "Expose current version"
+  tags:
+    description: "Updated bucket tags"
+
+runs:
+  using: "node12"
+  main: "dist/index.js"

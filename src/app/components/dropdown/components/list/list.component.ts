@@ -1,25 +1,22 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {DropdownOption} from '../../../../entities/dropdown-option';
+import { DropdownOption } from '../../../../entities/dropdown-option';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-
   @Input() list: DropdownOption[];
   @Input() selected: DropdownOption;
 
   @Output() selectOption = new EventEmitter<DropdownOption>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  select(option: DropdownOption){
+  select(option: DropdownOption) {
     this.selectOption.emit(option);
   }
-
 }

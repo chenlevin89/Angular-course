@@ -1,19 +1,27 @@
-import {Component, OnInit, Input, forwardRef, OnDestroy} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl} from '@angular/forms';
-import {Subject, BehaviorSubject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {DropdownOption} from '../../entities/dropdown-option';
+import { Component, OnInit, Input, forwardRef, OnDestroy } from '@angular/core';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  FormControl,
+} from '@angular/forms';
+import { Subject, BehaviorSubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { DropdownOption } from '../../entities/dropdown-option';
 
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
   providers: [
-    {provide: NG_VALUE_ACCESSOR, multi: true, useExisting: forwardRef(() => DropdownComponent)}
-  ]
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => DropdownComponent),
+    },
+  ],
 })
-export class DropdownComponent implements OnInit, ControlValueAccessor, OnDestroy {
-
+export class DropdownComponent
+  implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() set options(value: DropdownOption[]) {
     this.sourceOptions = [...value];
     this.displayedOptions$.next(value);
@@ -28,8 +36,7 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, OnDestro
 
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.onDestroy$.next();
@@ -37,15 +44,18 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, OnDestro
   }
 
   searchChanged(term: string) {
-    if(!term){
+    if (!term) {
       this.displayedOptions$.next(this.sourceOptions);
     } else {
-      const options = this.sourceOptions.filter(option => option.text.toLowerCase().indexOf(term.toLocaleLowerCase()) !== -1);
+      const options = this.sourceOptions.filter(
+        (option) =>
+          option.text.toLowerCase().indexOf(term.toLocaleLowerCase()) !== -1
+      );
       this.displayedOptions$.next(options);
     }
   }
 
-  selectOption(option: DropdownOption){
+  selectOption(option: DropdownOption) {
     this.selected.setValue(option);
     this.toggle = false;
   }
@@ -56,11 +66,6 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, OnDestro
   registerOnChange(fn: any): void {
     this.selected.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe(fn);
   }
-  registerOnTouched(fn: any): void {
-
-  }
-  setDisabledState?(isDisabled: boolean): void {
-
-  }
-
+  registerOnTouched(fn: any): void {}
+  setDisabledState?(isDisabled: boolean): void {}
 }

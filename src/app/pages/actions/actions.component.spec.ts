@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActionsComponent } from './actions.component';
+import { TodoListService } from '../../services/todo-list.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 
 describe('ActionsComponent', () => {
   let component: ActionsComponent;
@@ -8,9 +11,22 @@ describe('ActionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActionsComponent ]
-    })
-    .compileComponents();
+      declarations: [ActionsComponent],
+      imports: [RouterTestingModule],
+      providers: [
+        {
+          provide: TodoListService,
+          useValue: {
+            getTodoListData() {
+              return of([]);
+            },
+            getSelectedActions() {
+              return null;
+            },
+          },
+        },
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

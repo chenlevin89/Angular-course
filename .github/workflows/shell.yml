@@ -1,20 +1,34 @@
-name: Shell commands
+name: Test Custom action
 
-on:
-  push:
-    branches-ignore:
-        - "master"
+on: [pull_request]
+
 
 env:
   LOCAL_ENV: 'Workflow local env'
   CUSTOM_TEST_SECRETS: ${{ secrets.CUSTOM_TEST_SECRETS }}
 
 jobs:
-  git-checkout:
+  run-custom-action:
     runs-on: ubuntu-latest
     steps:
-      - name: prints
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: expose bucket tags (get from aws)
+        id: exposeBucketTags
         run: |
-          pwd
-          echo ${LOCAL_ENV}
-          echo ${CUSTOM_TEST_SECRETS}
+          bucketTagsContent=$(cat ./bucket.json)
+          bucketTagsContent="${bucketTagsContent//'%'/'%25'}"
+          bucketTagsContent="${bucketTagsContent//$'\n'/'%0A'}"
+          bucketTagsContent="${bucketTagsContent//$'\r'/'%0D'}"
+          echo "::set-output name=bucketTags::$bucketTagsContent"
+      - run: |
+          echo "${{steps.exposeBucketTags.outputs.bucketTags}}"
+      - name: Execute custom action
+        uses: ./.github/actions/version
+        id: custom-action
+        env:
+          param: ${{steps.exposeBucketTags.outputs.bucketTags}}
+        with:
+          param1: ${{env.param}}
+      - name: Print custom action result
+        run: echo "Custom action result ${{ steps.custom-action.outputs.version }} "

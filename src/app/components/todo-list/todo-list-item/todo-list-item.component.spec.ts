@@ -8,14 +8,14 @@ describe('TodoListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoListItemComponent ]
-    })
-    .compileComponents();
+      declarations: [TodoListItemComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoListItemComponent);
     component = fixture.componentInstance;
+    component.item = { id: 1, title: '' };
     fixture.detectChanges();
   });
 
