@@ -27,7 +27,8 @@
     "@angular/router": "~10.0.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "@ironsrc/fusion-ui": "^1.1.10"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.4",
