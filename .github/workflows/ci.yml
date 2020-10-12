@@ -27,7 +27,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-app-dependencies-
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cat npmrc >> .npmrc
+          npm ci
         env:
           NPM_AUTH_PASSWORD: ${{ secrets.NPM_AUTH_PASSWORD }}
           NPM_AUTH_USERNAME: ${{ secrets.NPM_AUTH_USERNAME }}
