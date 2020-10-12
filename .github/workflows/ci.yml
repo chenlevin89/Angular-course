@@ -14,6 +14,10 @@ on:
 jobs:
   ci-flow:
     runs-on: ubuntu-latest
+    env:
+      NPM_AUTH_PASSWORD: ${{ secrets.NPM_AUTH_PASSWORD }}
+      NPM_AUTH_USERNAME: ${{ secrets.NPM_AUTH_USERNAME }}
+      NPM_AUTH_EMAIL: ${{ secrets.NPM_AUTH_EMAIL }}
     steps:
       - name: Print workflow dispatch inputs
         run: echo ${{ github.event.inputs.param1 || 'none' }}
@@ -30,10 +34,6 @@ jobs:
         run: |
           cat npmrc >> .npmrc
           npm ci
-        env:
-          NPM_AUTH_PASSWORD: ${{ secrets.NPM_AUTH_PASSWORD }}
-          NPM_AUTH_USERNAME: ${{ secrets.NPM_AUTH_USERNAME }}
-          NPM_AUTH_EMAIL: ${{ secrets.NPM_AUTH_EMAIL }}
       - name: Run linting
         run: npm run lint
       - name: Run prettier
