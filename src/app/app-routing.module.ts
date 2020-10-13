@@ -15,6 +15,15 @@ export const routes: Routes = [
   {
     path: 'actions',
     loadChildren: () => import('./pages/actions/actions.module').then(m => m.ActionsModule)
+  },
+  {
+    path: 'not-found',
+    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found',
+    pathMatch: 'full'
   }
 ]
 

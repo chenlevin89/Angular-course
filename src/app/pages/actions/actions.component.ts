@@ -16,8 +16,7 @@ export class ActionsComponent implements OnInit {
               private todoListService: TodoListService) {}
 
   ngOnInit() {
-    // this.todoList = this.route.snapshot.data.todoList;
-    this.todoList = this.todoListService.getTodoListData();
+    this.todoList = this.route.snapshot.data.todoList;
   }
 
   addItem(item: TodoItem): void {
