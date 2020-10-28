@@ -33,6 +33,9 @@ export class ActionsComponent implements OnInit {
   }
 
   onClick(){
-    console.log('Button was clicked');
+    const item = {id:10, title: 'new task'};
+     this.todoList = [...this.todoList, item]
+    // this.todoList.push(item);
   }
+
 }
