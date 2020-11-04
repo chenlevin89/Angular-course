@@ -6,7 +6,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {NavigationModule} from './components/navigation/navigation.module';
 import {HttpClientModule} from '@angular/common/http';
 
-//Todo
 
 @NgModule({
   declarations: [
@@ -16,7 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     NavigationModule,
-  //  HttpClientModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
