@@ -19,7 +19,7 @@ import { Component, OnInit, Input, AfterViewInit, ElementRef, ViewChild } from '
 })
 export class TooltipComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('tooltip', {static: false}) tooltip: ElementRef;
+  @ViewChild('tooltip') tooltip: ElementRef;
 
   @Input() text: string;
   top = 0;

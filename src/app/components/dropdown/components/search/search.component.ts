@@ -9,7 +9,7 @@ import {takeUntil, debounceTime, distinctUntilChanged, map, filter} from 'rxjs/o
 })
 export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChild('search', {static: false}) search: ElementRef;
+  @ViewChild('search') search: ElementRef;
   @Output() searchChanged = new EventEmitter<string>()
 
   private onDestroy$ = new Subject();
