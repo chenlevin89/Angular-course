@@ -1,5 +1,5 @@
 <div class="dropdown-container" [class.disabled]="disabled$ | async">
-  <div class="selection" (click)="toggle = !toggle; onTouched();">
+  <div class="selection" (click)="onToggle()">
     <span>{{selected.value?.text || 'Select Option' }}</span>
     <span class="icon" [class.open]="toggle"><img src="../../../assets/images/arrow-down.svg" /></span>
   </div>

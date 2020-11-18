@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-accordion',
   templateUrl: './accordion.component.html',
-  styleUrls: ['./accordion.component.scss']
+  styleUrls: ['./accordion.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccordionComponent implements OnInit {
 

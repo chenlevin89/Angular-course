@@ -1,8 +1,9 @@
-import {Component, OnInit, Input, forwardRef, OnDestroy} from '@angular/core';
+import {Component, OnInit, Input, forwardRef, OnDestroy, ChangeDetectionStrategy, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl} from '@angular/forms';
 import {Subject, BehaviorSubject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {DropdownOption} from '../../entities/dropdown-option';
+import {SearchComponent} from './components/search/search.component';
 
 @Component({
   selector: 'app-dropdown',
@@ -10,9 +11,12 @@ import {DropdownOption} from '../../entities/dropdown-option';
   styleUrls: ['./dropdown.component.scss'],
   providers: [
     {provide: NG_VALUE_ACCESSOR, multi: true, useExisting: forwardRef(() => DropdownComponent)}
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent implements ControlValueAccessor, OnDestroy {
+
+  @ViewChild(SearchComponent) searchComponent: SearchComponent;
 
   @Input() set options(value: DropdownOption[]) {
     this.sourceOptions = [...value];
@@ -31,6 +35,12 @@ export class DropdownComponent implements ControlValueAccessor, OnDestroy {
   ngOnDestroy() {
     this.onDestroy$.next();
     this.onDestroy$.complete();
+  }
+
+  onToggle(): void{
+    this.toggle = !this.toggle;
+    this.searchComponent.clearSearch();
+    this.onTouched();
   }
 
   searchChanged(term: string) {

@@ -1,23 +1,21 @@
-import {Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, Output, EventEmitter, ChangeDetectionStrategy, Renderer2} from '@angular/core';
 import {fromEvent, Subject} from 'rxjs';
 import {takeUntil, debounceTime, distinctUntilChanged, map, filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SearchComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('search') search: ElementRef;
   @Output() searchChanged = new EventEmitter<string>()
 
   private onDestroy$ = new Subject();
 
-  constructor() {}
-
-  ngOnInit() {
-  }
+  constructor(private renderer: Renderer2) {}
 
   ngOnDestroy() {
     this.onDestroy$.next();
@@ -36,6 +34,11 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(term => {
         this.searchChanged.emit(term);
       })
+  }
+
+  clearSearch(){
+    this.renderer.setProperty(this.search.nativeElement, 'value', null);
+    this.search.nativeElement.dispatchEvent(new Event('input'));
   }
 
 }

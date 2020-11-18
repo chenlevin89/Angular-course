@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-tooltip',
   template: `<span #tooltip >{{text}}</span>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [`
     :host{
       position: relative;
