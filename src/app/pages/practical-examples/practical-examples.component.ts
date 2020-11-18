@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {DropdownOption} from '../../entities/dropdown-option';
 import {LoaderService} from '../../services/loader.service';
@@ -10,15 +10,12 @@ export const OPTIONS = ['Angular', 'React', 'Vue', 'Backbone', 'Native', 'Ember'
   templateUrl: './practical-examples.component.html',
   styleUrls: ['./practical-examples.component.scss']
 })
-export class PracticalExamplesComponent implements OnInit {
+export class PracticalExamplesComponent {
 
   dropdownOptions: DropdownOption[] = [...Array(10).keys()].map(id => ({id, text: OPTIONS[id]}));
   dropdown = new FormControl();
 
   constructor(private loaderService: LoaderService) {}
-
-  ngOnInit() {
-  }
 
   toggleLoader(status: boolean): void {
     this.loaderService.setLoaderStatus(status);

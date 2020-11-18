@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, AfterViewInit, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-tooltip',
@@ -18,17 +18,12 @@ import { Component, OnInit, Input, AfterViewInit, ElementRef, ViewChild, ChangeD
     }
   `]
 })
-export class TooltipComponent implements OnInit, AfterViewInit {
+export class TooltipComponent implements AfterViewInit {
 
   @ViewChild('tooltip') tooltip: ElementRef;
 
   @Input() text: string;
   top = 0;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   ngAfterViewInit(){
    this.top -= this.tooltip.nativeElement.clientHeight;

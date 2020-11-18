@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, forwardRef, OnDestroy, ChangeDetectionStrategy, ViewChild} from '@angular/core';
+import {Component, Input, forwardRef, OnDestroy, ChangeDetectionStrategy, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl} from '@angular/forms';
 import {Subject, BehaviorSubject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
