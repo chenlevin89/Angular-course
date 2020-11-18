@@ -3,7 +3,7 @@ import {TodoItem} from '../../entities/todo-item';
 import {TodoListService} from '../../services/todo-list.service';
 import {ActivatedRoute} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
-import {takeUntil, scan} from 'rxjs/operators';
+import {takeUntil, scan, pluck} from 'rxjs/operators';
 import {Subject, Observable, merge} from 'rxjs';
 
 @Component({
@@ -24,8 +24,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
   constructor(private todoListService: TodoListService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-
-    this.todoList$ = merge(this.todoListService.getTodoListData(), this.todoListSubject$.asObservable())
+    this.todoList$ = merge(this.route.data.pipe(pluck('data')), this.todoListSubject$.asObservable())
       .pipe(
         scan((acc, value) => {
           if (Array.isArray(value)) {
