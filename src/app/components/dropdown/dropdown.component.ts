@@ -12,7 +12,7 @@ import {DropdownOption} from '../../entities/dropdown-option';
     {provide: NG_VALUE_ACCESSOR, multi: true, useExisting: forwardRef(() => DropdownComponent)}
   ]
 })
-export class DropdownComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class DropdownComponent implements ControlValueAccessor, OnDestroy {
 
   @Input() set options(value: DropdownOption[]) {
     this.sourceOptions = [...value];
@@ -22,14 +22,11 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, OnDestro
   displayedOptions$ = new BehaviorSubject<DropdownOption[]>([]);
   selected = new FormControl();
   toggle = false;
+  disabled$ = new Subject<boolean>();
+  onTouched: () => void;
 
   private sourceOptions: DropdownOption[];
   private onDestroy$ = new Subject();
-
-  constructor() {}
-
-  ngOnInit() {
-  }
 
   ngOnDestroy() {
     this.onDestroy$.next();
@@ -53,14 +50,17 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, OnDestro
   writeValue(obj: DropdownOption): void {
     this.selected.setValue(obj);
   }
+
   registerOnChange(fn: any): void {
     this.selected.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe(fn);
   }
+
   registerOnTouched(fn: any): void {
-
+    this.onTouched = fn;
   }
-  setDisabledState?(isDisabled: boolean): void {
 
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled$.next(isDisabled);
   }
 
 }
