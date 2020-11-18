@@ -11,5 +11,12 @@
         background-color: lightgray;
       }
     }
+    .no-data{
+      position: absolute;
+      top: 50%;
+      left: calc(50% - 10px);
+      color: rgba(0,0,0,0.6);
+      font-size: 20px;
+    }
   }
 }

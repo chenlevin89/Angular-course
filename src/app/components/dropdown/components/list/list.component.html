@@ -1,3 +1,4 @@
 <div>
     <p *ngFor="let item of list" (click)="select(item)" [class.selected]="item === selected">{{item.text}}</p>
+    <span *ngIf="!list?.length" class="no-data" >No Data</span>
 </div>

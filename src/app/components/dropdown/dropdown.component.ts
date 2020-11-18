@@ -54,7 +54,7 @@ export class DropdownComponent implements ControlValueAccessor, OnDestroy {
 
   selectOption(option: DropdownOption){
     this.selected.setValue(option);
-    this.toggle = false;
+    this.onToggle();
   }
 
   writeValue(obj: DropdownOption): void {

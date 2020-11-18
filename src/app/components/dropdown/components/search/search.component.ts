@@ -27,8 +27,8 @@ export class SearchComponent implements AfterViewInit, OnDestroy {
       .pipe(
         map((event: any) => event.target.value),
         filter(value => !value || value.length > 1),
-        debounceTime(300),
         distinctUntilChanged(),
+        debounceTime(300),
         takeUntil(this.onDestroy$)
       )
       .subscribe(term => {
